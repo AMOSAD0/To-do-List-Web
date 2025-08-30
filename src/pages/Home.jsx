@@ -6,7 +6,7 @@ import TodoItem from "../components/TodoItem";
 import ButtonToDo from "../components/Button";
 
 export default function Home() {
-  let value = "";
+  const [inputValue, setInputValue] = useState("");
   const [tasks, setTasks] = useState([
     { id: 1, title: "Task 1", completed: false },
     { id: 2, title: "Task 2", completed: true },
@@ -18,8 +18,9 @@ export default function Home() {
       <div>
         <input
           className="inputText"
+          value={inputValue}
           onChange={(e) => {
-            value = e.target.value;
+            setInputValue(e.target.value);
           }}
           type="text"
           placeholder="Add a new task"
@@ -27,18 +28,21 @@ export default function Home() {
         <ButtonToDo
           className="addBtn"
           event={() => {
-            if (value === "") {
+            if (inputValue.trim() === "") {
               alert("Please enter a task");
               return;
             }
+            const newId =
+              tasks.length > 0 ? Math.max(...tasks.map((t) => t.id)) + 1 : 1;
             setTasks([
               ...tasks,
               {
-                id: tasks[tasks.length - 1].id + 1,
-                title: value,
+                id: newId,
+                title: inputValue,
                 completed: false,
               },
             ]);
+            setInputValue("");
             alert("Add Task");
           }}
         >
