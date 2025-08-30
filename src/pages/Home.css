@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  padding: 20px; /* يدي مساحة في الموبايل */
 }
 
 .inputText {
@@ -14,6 +15,7 @@
   margin-bottom: 20px;
   width: 20vw;
   height: 40px;
+  min-width: 200px; /* أقل عرض مناسب */
 }
 
 .addBtn {
@@ -50,7 +52,10 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+  width: 100%; /* خليها تتمدد */
+  max-width: 500px; /* بس مش أكبر من كده */
 }
+
 .task {
   display: flex;
   align-items: center;
@@ -58,7 +63,7 @@
   background-color: #1c0e2b;
   border-radius: 4px;
   margin-bottom: 10px;
-  width: 23.5vw;
+  width: 100%; /* تاخد كل العرض المتاح */
   height: 65px;
   padding: 10px;
 }
@@ -78,4 +83,32 @@ p {
 
 .addBtn:hover {
   background-color: #7e57c2;
+}
+
+/* 🔹 موبايل (شاشات أقل من 600px) */
+@media (max-width: 600px) {
+  .inputText {
+    width: 80%; /* العرض يبقى كبير في الموبايل */
+  }
+  .tasks {
+    max-width: 100%;
+  }
+  .task {
+    flex-direction: column; /* خلي الـ task عمودي */
+    align-items: flex-start;
+    height: auto; /* يحدد نفسه */
+  }
+  .task button {
+    margin-top: 8px; /* مسافة صغيرة بين الأزرار */
+  }
+}
+
+/* 🔹 تابلت (شاشات أقل من 900px) */
+@media (max-width: 900px) {
+  .inputText {
+    width: 60%;
+  }
+  .tasks {
+    max-width: 80%;
+  }
 }

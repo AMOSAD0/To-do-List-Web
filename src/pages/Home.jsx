@@ -62,7 +62,7 @@ export default function Home() {
           ))}
       </div>
 
-      <div>
+      <div className="tasks">
         <p>Done </p>
         {tasks
           .filter((task) => task.completed)
